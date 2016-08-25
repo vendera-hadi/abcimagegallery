@@ -1,0 +1,179 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Material Design Lite</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.yellow-lime.min.css" />
+    <link rel="stylesheet" href="css/vue-animate.min.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title text-center">Our Memories</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+          <img src="img/user.jpg" width="110" height="100">
+        </header>
+        <!-- Expandable Textfield -->
+<form action="#">
+  <center>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+      <i class="material-icons">search</i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+      <input class="mdl-textfield__input" type="text" id="sample6">
+      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+    </div>
+  </div>
+</center>
+</form>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">web</i></a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" role="presentation" data-badge="2">group</i></a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">view_column</i></a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i></a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">date_range</i></a>
+          <a class="mdl-navigation__link" href="">logout</a>
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+          
+          <div class="mdl-cell mdl-cell--8-col">
+            <div class="mdl-grid">
+              <ul class="simplefilter">
+                  <li v-for="category in categories" @click="changeCategory" :class="{'active': category.status}" data-filter="{{category.filter}}">{{category.text}}</li>
+              </ul>
+            </div>
+
+            <div class="mdl-grid">
+                <ul class="sortandshuffle">
+                    <!-- Basic sort controls consisting of asc/desc button and a select -->
+                    <select id="sortDropdown">
+                        <option value="date">
+                            Sort by Date
+                        </option>
+                        <option value="title">
+                            Sort by Title
+                        </option>
+                    </select>
+                    <li class="sort-btn" @click="sort('asc')">Asc</li>
+                    <li class="sort-btn" @click="sort('desc')">Desc</li>
+                </ul>
+            </div>
+
+            <div class="mdl-grid" id="filtr-container">
+                
+                <div v-for="(index, image) in images" transition="expand" id="img-{{index}}" v-show="image.show" class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--6-col-phone filtr-item" data-category="{{image.category}}" data-title="{{image.title}}">
+                    <img class="img-responsive" :src="image.source" alt="">
+                    <span class="item-desc">{{image.title}}</span>
+
+                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="img-{{index}}">
+                        {{image.description}}
+                    </div>
+                </div>
+
+            </div>
+
+          </div>
+
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">
+            
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300" style="background: url(img/industrial_1.jpg) no-repeat center center">
+                <h2 class="mdl-card__title-text">Most popular of the week <i class="material-icons text-right">star</i></h2></h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                See the most popular photos of the week :D
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Visit Gallery</a>
+              </div>
+            </div>
+
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300" style="background: url(img/city_2.jpg) no-repeat center center">
+                <h2 class="mdl-card__title-text">Most Liked Images <i class="material-icons">thumb_up</i></h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                Journey of a digital nomad<br><strong>1000 Likes</strong>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Visit Gallery</a>
+              </div>
+            </div>
+
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300" style="background: url(img/nature_3.jpg) no-repeat center center">
+                <h2 class="mdl-card__title-text">Random moment last year <i class="material-icons">history</i></h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                Peoples are laughing of loud
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Visit Gallery</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <script src="js/core.min.js"></script>
+    <script src="js/main.min.js" type="text/javascript"></script>
+    
+  </body>
+</html>

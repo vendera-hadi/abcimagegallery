@@ -1,0 +1,118 @@
+.mdl-layout__header {
+  box-shadow: none;
+}
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen) > .mdl-layout__header {
+  margin-left: 110px;
+  width: calc(-10%);
+}
+.mdl-layout--fixed-drawer > .mdl-layout__content {
+  margin-left: 110px;
+}
+@media only screen and (max-width: 1024px) {
+  .mdl-layout--fixed-drawer > .mdl-layout__content {
+    margin-left: 0;
+  }
+}
+.mdl-layout__drawer {
+  width: 110px !important;
+  overflow: hidden;
+}
+@media only screen and (max-width: 1024px) {
+  .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+    padding: 16px 40px;
+  }
+}
+.timeline {
+  list-style: none;
+}
+.timeline > li {
+  margin-bottom: 60px;
+}
+@media (min-width: 640px) {
+  .timeline > li {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+  .timeline-date {
+    width: 110px;
+    float: left;
+    margin-top: 20px;
+  }
+  .timeline-content {
+    width: 75%;
+    float: left;
+    border-left: 3px #e5e5d1 solid;
+    padding-left: 30px;
+  }
+  .timeline-content:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #6fc173;
+    position: absolute;
+    left: 106px;
+    top: 24px;
+    border-radius: 100%;
+  }
+}
+.expand-transition {
+  transition: all .3s ease;
+}
+.expand-enter,
+.expand-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
+.simplefilter li,
+.sortandshuffle li {
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 0.5rem 2rem;
+  margin-bottom: 10px;
+}
+.sortandshuffle .sort-btn {
+  background-color: #de0000;
+}
+.sortandshuffle .sort-btn.active {
+  background-color: #9d0000;
+}
+.simplefilter li.active {
+  background-color: #212121;
+}
+.simplefilter li {
+  background-color: #585858;
+  margin: 2px;
+}
+select {
+  padding: 0.7rem 1rem;
+  text-transform: uppercase;
+}
+.filtr-item {
+  padding: 1rem;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.item-desc {
+  background-color: #000000;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+}
+.demo-updates .mdl-card__title {
+  min-height: 200px;
+  background-position: 90% 100%;
+  background-repeat: no-repeat;
+}
+.mdl-card__title-text {
+  color: white;
+  font-weight: 600;
+  text-shadow: 2px 2px black;
+}
